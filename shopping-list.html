@@ -9,113 +9,208 @@
 
     body {
       font-family: 'Segoe UI', sans-serif;
-      background: #f0f4f8;
+      background: #eef2f7;
       min-height: 100vh;
       display: flex;
+      align-items: flex-start;
       justify-content: center;
-      padding: 40px 16px;
+      padding: 48px 24px;
     }
 
-    .container {
-      background: #fff;
-      border-radius: 16px;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.1);
+    .app {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 24px;
       width: 100%;
-      max-width: 480px;
-      padding: 32px;
-      height: fit-content;
+      max-width: 960px;
     }
 
-    h1 {
-      font-size: 1.6rem;
-      color: #1a202c;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-
-    .input-row {
+    /* ── 사이드 패널 ── */
+    .sidebar {
+      background: #3b5bdb;
+      border-radius: 16px;
+      padding: 32px 24px;
+      color: #fff;
       display: flex;
-      gap: 8px;
-      margin-bottom: 24px;
+      flex-direction: column;
+      gap: 24px;
+      height: fit-content;
+      position: sticky;
+      top: 48px;
     }
 
-    .input-row input {
-      flex: 1;
+    .sidebar h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+    }
+
+    .sidebar p.subtitle {
+      font-size: 0.85rem;
+      opacity: 0.75;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .input-group input {
+      width: 100%;
       padding: 10px 14px;
-      border: 2px solid #e2e8f0;
+      border: 2px solid rgba(255,255,255,0.3);
       border-radius: 8px;
       font-size: 0.95rem;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
       outline: none;
       transition: border-color 0.2s;
     }
 
-    .input-row input:focus {
-      border-color: #4f8ef7;
-    }
+    .input-group input::placeholder { color: rgba(255,255,255,0.55); }
+    .input-group input:focus { border-color: rgba(255,255,255,0.8); }
 
-    .input-row button {
-      padding: 10px 18px;
-      background: #4f8ef7;
-      color: #fff;
+    .input-group button {
+      width: 100%;
+      padding: 10px;
+      background: #fff;
+      color: #3b5bdb;
       border: none;
       border-radius: 8px;
       font-size: 0.95rem;
+      font-weight: 600;
       cursor: pointer;
-      transition: background 0.2s;
-      white-space: nowrap;
+      transition: background 0.2s, color 0.2s;
     }
 
-    .input-row button:hover { background: #3b7de8; }
+    .input-group button:hover {
+      background: #e7edff;
+    }
 
-    .stats {
+    .stat-box {
+      background: rgba(255,255,255,0.15);
+      border-radius: 10px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .stat-row {
       display: flex;
       justify-content: space-between;
-      font-size: 0.82rem;
-      color: #718096;
-      margin-bottom: 12px;
+      font-size: 0.88rem;
+    }
+
+    .stat-row .label { opacity: 0.8; }
+    .stat-row .value { font-weight: 600; }
+
+    .progress-bar {
+      height: 6px;
+      background: rgba(255,255,255,0.25);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: #fff;
+      border-radius: 99px;
+      transition: width 0.3s ease;
     }
 
     .clear-btn {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: #fff;
+      border-radius: 8px;
+      padding: 9px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+    }
+
+    .clear-btn:hover { background: rgba(255,255,255,0.25); }
+
+    .hint {
+      font-size: 0.78rem;
+      opacity: 0.55;
+      text-align: center;
+    }
+
+    /* ── 리스트 패널 ── */
+    .main {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+      padding: 32px;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .main-header h2 {
+      font-size: 1rem;
+      color: #4a5568;
+      font-weight: 600;
+    }
+
+    .filter-tabs {
+      display: flex;
+      gap: 4px;
+    }
+
+    .filter-tabs button {
       background: none;
-      border: none;
-      color: #e53e3e;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      padding: 4px 12px;
       font-size: 0.82rem;
       cursor: pointer;
-      padding: 0;
+      color: #718096;
+      transition: all 0.15s;
     }
 
-    .clear-btn:hover { text-decoration: underline; }
-
-    ul {
-      list-style: none;
+    .filter-tabs button.active {
+      background: #3b5bdb;
+      border-color: #3b5bdb;
+      color: #fff;
     }
+
+    ul { list-style: none; flex: 1; }
 
     li {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 12px 10px;
+      gap: 14px;
+      padding: 13px 12px;
       border-radius: 8px;
       transition: background 0.15s;
     }
 
     li:hover { background: #f7fafc; }
-
-    li + li {
-      border-top: 1px solid #edf2f7;
-    }
+    li + li { border-top: 1px solid #edf2f7; }
 
     li input[type="checkbox"] {
       width: 18px;
       height: 18px;
-      accent-color: #4f8ef7;
+      accent-color: #3b5bdb;
       cursor: pointer;
       flex-shrink: 0;
     }
 
     li .item-text {
       flex: 1;
-      font-size: 0.95rem;
+      font-size: 0.97rem;
       color: #2d3748;
       word-break: break-all;
       transition: color 0.2s;
@@ -130,64 +225,114 @@
       background: none;
       border: none;
       color: #cbd5e0;
-      font-size: 1.1rem;
+      font-size: 1rem;
       cursor: pointer;
-      padding: 2px 6px;
+      padding: 4px 8px;
       border-radius: 4px;
       transition: color 0.2s, background 0.2s;
       flex-shrink: 0;
     }
 
-    li .delete-btn:hover {
-      color: #e53e3e;
-      background: #fff5f5;
-    }
+    li .delete-btn:hover { color: #e53e3e; background: #fff5f5; }
 
     .empty {
-      text-align: center;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       color: #a0aec0;
-      padding: 32px 0;
-      font-size: 0.9rem;
+      font-size: 0.92rem;
+      gap: 8px;
+      padding: 40px 0;
     }
+
+    .empty .icon { font-size: 2.5rem; }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>쇼핑 리스트</h1>
-    <div class="input-row">
-      <input type="text" id="itemInput" placeholder="아이템 입력..." />
-      <button onclick="addItem()">추가</button>
-    </div>
-    <div class="stats">
-      <span id="statsText">0개 항목</span>
+  <div class="app">
+    <!-- 사이드바 -->
+    <aside class="sidebar">
+      <div style="display:flex; flex-direction:column; gap:4px;">
+        <h1>쇼핑 리스트</h1>
+        <p class="subtitle">오늘의 장보기 목록</p>
+      </div>
+
+      <div class="input-group">
+        <input type="text" id="itemInput" placeholder="아이템 입력..." />
+        <button onclick="addItem()">+ 추가</button>
+      </div>
+
+      <div class="stat-box">
+        <div class="stat-row">
+          <span class="label">전체</span>
+          <span class="value" id="totalCount">0개</span>
+        </div>
+        <div class="stat-row">
+          <span class="label">완료</span>
+          <span class="value" id="doneCount">0개</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" id="progressFill" style="width:0%"></div>
+        </div>
+      </div>
+
       <button class="clear-btn" onclick="clearChecked()">완료 항목 삭제</button>
-    </div>
-    <ul id="list"></ul>
-    <p class="empty" id="emptyMsg">아직 아이템이 없습니다.</p>
+      <p class="hint">Enter 키로 빠르게 추가</p>
+    </aside>
+
+    <!-- 메인 리스트 -->
+    <main class="main">
+      <div class="main-header">
+        <h2 id="listTitle">전체 목록</h2>
+        <div class="filter-tabs">
+          <button class="active" onclick="setFilter('all', this)">전체</button>
+          <button onclick="setFilter('todo', this)">미완료</button>
+          <button onclick="setFilter('done', this)">완료</button>
+        </div>
+      </div>
+      <ul id="list"></ul>
+      <div class="empty" id="emptyMsg">
+        <span class="icon">🛒</span>
+        <span>아직 아이템이 없습니다.</span>
+      </div>
+    </main>
   </div>
 
   <script>
     const input = document.getElementById('itemInput');
     const list = document.getElementById('list');
     const emptyMsg = document.getElementById('emptyMsg');
-    const statsText = document.getElementById('statsText');
+    const totalCount = document.getElementById('totalCount');
+    const doneCount = document.getElementById('doneCount');
+    const progressFill = document.getElementById('progressFill');
+    const listTitle = document.getElementById('listTitle');
 
     let items = JSON.parse(localStorage.getItem('shoppingList') || '[]');
+    let filter = 'all';
 
     function save() {
       localStorage.setItem('shoppingList', JSON.stringify(items));
     }
 
     function render() {
+      const filtered = items.filter(item => {
+        if (filter === 'todo') return !item.checked;
+        if (filter === 'done') return item.checked;
+        return true;
+      });
+
       list.innerHTML = '';
-      items.forEach((item, i) => {
+      filtered.forEach((item) => {
+        const realIndex = items.indexOf(item);
         const li = document.createElement('li');
         if (item.checked) li.classList.add('checked');
 
         const cb = document.createElement('input');
         cb.type = 'checkbox';
         cb.checked = item.checked;
-        cb.onchange = () => toggle(i);
+        cb.onchange = () => toggle(realIndex);
 
         const span = document.createElement('span');
         span.className = 'item-text';
@@ -197,17 +342,23 @@
         del.className = 'delete-btn';
         del.textContent = '✕';
         del.title = '삭제';
-        del.onclick = () => remove(i);
+        del.onclick = () => remove(realIndex);
 
         li.append(cb, span, del);
         list.appendChild(li);
       });
 
-      emptyMsg.style.display = items.length === 0 ? 'block' : 'none';
-
       const total = items.length;
       const done = items.filter(it => it.checked).length;
-      statsText.textContent = total === 0 ? '0개 항목' : `${done} / ${total}개 완료`;
+      const pct = total === 0 ? 0 : Math.round((done / total) * 100);
+
+      totalCount.textContent = `${total}개`;
+      doneCount.textContent = `${done}개`;
+      progressFill.style.width = pct + '%';
+
+      const isEmpty = filtered.length === 0;
+      emptyMsg.style.display = isEmpty ? 'flex' : 'none';
+      list.style.display = isEmpty ? 'none' : 'block';
     }
 
     function addItem() {
@@ -234,6 +385,15 @@
     function clearChecked() {
       items = items.filter(it => !it.checked);
       save();
+      render();
+    }
+
+    function setFilter(f, btn) {
+      filter = f;
+      document.querySelectorAll('.filter-tabs button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const labels = { all: '전체 목록', todo: '미완료 목록', done: '완료 목록' };
+      listTitle.textContent = labels[f];
       render();
     }
 
